@@ -6,15 +6,25 @@ public class ContaBanco {
     private String conta;
     private String titular;
     private double saldo;
+    private double chequeEspecial;
 
     public ContaBanco() {
     }
 
-    public ContaBanco(String agencia, String conta, String titular, double saldo) {
+    public ContaBanco(String agencia, String conta, String titular, double saldo, double chequeEspecial) {
         this.agencia = agencia;
         this.conta = conta;
         this.titular = titular;
         this.saldo = saldo;
+        this.chequeEspecial = chequeEspecial;
+    }
+
+    public double getChequeEspecial() {
+        return chequeEspecial;
+    }
+
+    public void setChequeEspecial(double chequeEspecial) {
+        this.chequeEspecial = chequeEspecial;
     }
 
     public String getAgencia() {
@@ -62,31 +72,35 @@ public class ContaBanco {
         return retorno.toString();
     }
 
-    public void saque(double saque) {
-        System.out.println("Sacando: R$" + saque + "\n");
-
-        if (saque > this.saldo) {
-            System.out.println("Erro, valor de saque superior ao saldo!\n");
+    public boolean saque(double saque, boolean status) {
+        if (saque > (this.saldo + this.chequeEspecial)) {
+	  if (status) {
+	      System.out.println("Erro, valor de saque superior ao saldo!\n");
+	  }
+	  return true;
         } else {
-            this.saldo -= saque;
-            System.out.println("Foi sacado: R$" + saque + "\n");
+	  this.saldo -= saque;
+	  if (status) {
+	      System.out.println("Foi sacado: R$" + saque + "\n");
+	  }
+	  return true;
         }
     }
 
-    public void deposito(double deposito) {
-        System.out.println("Depositando: R$" + deposito + "\n");
-
+    public void deposito(double deposito, boolean status) {
+        if (status) {
+	  System.out.println("Depositando: R$" + deposito + "\n");
+	  System.out.println("Foi depositado: R$" + deposito + "\n");
+        }
         this.saldo += deposito;
-        System.out.println("Foi depositado: R$" + deposito + "\n");
     }
 
     public void transferir(double valorTrans, ContaBanco contaRecebe) {
-        if (valorTrans < this.saldo) {
-            this.saldo -= valorTrans;
-            contaRecebe.saldo += valorTrans;
-            System.out.println("\nTranferido com sucesso: R$ " + valorTrans);
+        if (saque(valorTrans, false)) {
+	  contaRecebe.deposito(valorTrans, false);
+	  System.out.println("\nTranferido com sucesso: R$ " + valorTrans);
         } else {
-            System.out.println("Erro na transferencia\n");
+	  System.out.println("Erro na transferencia\n");
         }
     }
 
