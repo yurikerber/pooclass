@@ -7,16 +7,26 @@ public class ContaBanco {
     private String titular;
     private double saldo;
     private double chequeEspecial;
+    private String chavePix;
 
     public ContaBanco() {
     }
 
-    public ContaBanco(String agencia, String conta, String titular, double saldo, double chequeEspecial) {
+    public ContaBanco(String agencia, String conta, String titular, double saldo, double chequeEspecial, String chavePix) {
         this.agencia = agencia;
         this.conta = conta;
         this.titular = titular;
         this.saldo = saldo;
         this.chequeEspecial = chequeEspecial;
+        this.chavePix = chavePix;
+    }
+
+    public String getChavePix() {
+        return chavePix;
+    }
+
+    public void setChavePix(String chavePix) {
+        this.chavePix = chavePix;
     }
 
     public double getChequeEspecial() {
@@ -68,6 +78,8 @@ public class ContaBanco {
         retorno.append("\nAgência: ").append(this.agencia);
         retorno.append("\nNúmero da conta: ").append(this.conta);
         retorno.append("\nSaldo: R$").append(this.saldo);
+        retorno.append("\nCheque especial: R$").append(this.chequeEspecial);
+        retorno.append("\nChave PIX: ").append(this.chavePix);
 
         return retorno.toString();
     }
@@ -77,7 +89,7 @@ public class ContaBanco {
 	  if (status) {
 	      System.out.println("Erro, valor de saque superior ao saldo!\n");
 	  }
-	  return true;
+	  return false;
         } else {
 	  this.saldo -= saque;
 	  if (status) {
@@ -101,6 +113,16 @@ public class ContaBanco {
 	  System.out.println("\nTranferido com sucesso: R$ " + valorTrans);
         } else {
 	  System.out.println("Erro na transferencia\n");
+        }
+    }
+
+    public void transferenciaPix(String pix, double valor, ContaBanco vet[]) {
+        if (saque(valor, false)) {
+	  for (int i = 0; i < vet.length; i++) {
+	      if (pix.equals(vet[i].getChavePix())) {
+		vet[i].deposito(valor, false);
+	      }
+	  }
         }
     }
 

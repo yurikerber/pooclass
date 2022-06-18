@@ -6,53 +6,25 @@ public class TesteConta {
 
     public static void main(String[] args) {
 
-        ContaBanco objConta = new ContaBanco();
-        ContaBanco objConta2 = new ContaBanco();
+        ContaBanco vetContas[] = new ContaBanco[5];
 
-        //conta1
-        objConta.setTitular("Yuri Kerber Fernandes");
-        objConta.setConta("719900");
-        objConta.setAgencia("7190");
-        objConta.setSaldo(1700);
-        objConta.setChequeEspecial(300);
+        ContaBanco objConta1 = new ContaBanco("7190", "13141516", "Yuri Kerber", 1800, 300, "51999999999");
+        vetContas[0] = objConta1;
+        ContaBanco objConta2 = new ContaBanco("7190", "14131218", "Juca Bala", 2600, 300, "519888888");
+        vetContas[1] = objConta2;
+        ContaBanco objConta3 = new ContaBanco("7190", "18191715", "Jonas Dhein", 1200, 300, "519777777");
+        vetContas[2] = objConta3;
+        ContaBanco objConta4 = new ContaBanco("7190", "14121514", "Luciano", 300, 300, "51966666666");
+        vetContas[3] = objConta4;
+        ContaBanco objConta5 = new ContaBanco("7190", "13161918", "Mariana", 403.50, 300, "519555555");
+        vetContas[4] = objConta5;
 
-        //conta2
-        objConta2.setTitular("Juca Bala");
-        objConta2.setConta("8182839");
-        objConta2.setAgencia("7190");
-        objConta2.setSaldo(2030.89);
-        objConta2.setChequeEspecial(400);
+        objConta1.transferenciaPix("519555555", 400, vetContas);
+        objConta2.transferenciaPix("51966666666", 100, vetContas);
 
-        objConta.transferir(100, objConta2);
-
-        System.out.println("");
-        System.out.println(objConta);
-        System.out.println("");
         System.out.println(objConta2);
-
-        objConta.deposito(1000, true);
-        System.out.println(objConta);
-
-//        objConta.transferir(120, objConta2);
-//
-//        System.out.println("");
-//        System.out.println(objConta);
-//        System.out.println("");
-//        System.out.println(objConta2);
-//        System.out.println(objConta);
-//        System.out.println(objConta2);
-//        System.out.println("");
-//
-//        objConta.saque(1701);
-//
-//        System.out.println(objConta);
-//        System.out.println(objConta2);
-//        System.out.println("");
-//
-//        objConta.deposito(10000);
-//        
-//        System.out.println(objConta);
-//        System.out.println(objConta2);
+        System.out.println(objConta4);
+        
         System.exit(0);
     }
 
