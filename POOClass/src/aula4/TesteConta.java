@@ -1,5 +1,6 @@
 package aula4;
 
+import ferramentas.Entrada;
 import modelos.ContaBanco;
 
 public class TesteConta {
@@ -19,13 +20,14 @@ public class TesteConta {
         ContaBanco objConta5 = new ContaBanco("7190", "13161918", "Mariana", 403.50, 300, "519555555");
         vetContas[4] = objConta5;
 
-        objConta1.transferenciaPix("519555555", 400, vetContas);
-        objConta2.transferenciaPix("51966666666", 100, vetContas);
+        String contaOrigem = Entrada.leiaString("Digite a conta origem:");
+        String contaDestino = Entrada.leiaString("Digite a chave PIX da conta para tranferir:");
+        Double valor = Entrada.leiaDouble("Digite o valor:");
+
 
         System.out.println(objConta2);
         System.out.println(objConta4);
-        
+
         System.exit(0);
     }
-
 }

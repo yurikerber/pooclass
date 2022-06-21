@@ -80,6 +80,7 @@ public class ContaBanco {
         retorno.append("\nSaldo: R$").append(this.saldo);
         retorno.append("\nCheque especial: R$").append(this.chequeEspecial);
         retorno.append("\nChave PIX: ").append(this.chavePix);
+        retorno.append("\n----------------------------");
 
         return retorno.toString();
     }
@@ -116,14 +117,8 @@ public class ContaBanco {
         }
     }
 
-    public void transferenciaPix(String pix, double valor, ContaBanco vet[]) {
-        if (saque(valor, false)) {
-	  for (int i = 0; i < vet.length; i++) {
-	      if (pix.equals(vet[i].getChavePix())) {
-		vet[i].deposito(valor, false);
-	      }
-	  }
-        }
+    public void transferirPix(ContaBanco pix, double valor) {
+        transferir(valor, pix);
     }
 
 }
