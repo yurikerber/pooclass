@@ -112,6 +112,7 @@ public class ContaBanco {
         if (saque(valorTrans, false)) {
 	  contaRecebe.deposito(valorTrans, false);
 	  System.out.println("\nTranferido com sucesso: R$ " + valorTrans);
+	  System.out.println("--------------------------------------");
         } else {
 	  System.out.println("Erro na transferencia\n");
         }

@@ -21,17 +21,25 @@ public class TestePix {
         vetContas[4] = objConta5;
 
         String contaOrigem = Entrada.leiaString("Digite a conta origem:");
-        String contaDestino = Entrada.leiaString("Digite a chave PIX da conta para tranferir:");
-        Double valorPix = Entrada.leiaDouble("Digite o valor:");
 
         ContaBanco objContaOrigem = localizarContaOrigem(contaOrigem);
-        ContaBanco objContaDestino = localizarChavePix(contaDestino);
 
-        objContaOrigem.transferirPix(objContaDestino, valorPix);
+        if (objContaOrigem != null) {
+	  String contaDestino = Entrada.leiaString("Digite a chave PIX da conta para tranferir:");
 
-        System.out.println(objContaOrigem);
-        System.out.println(objContaDestino);
+	  ContaBanco objContaDestino = localizarChavePix(contaDestino);
+	  if (objContaDestino != null) {
+	      Double valorPix = Entrada.leiaDouble("Digite o valor:");
+	      objContaOrigem.transferirPix(objContaDestino, valorPix);
 
+	      System.out.println(objContaOrigem);
+	      System.out.println(objContaDestino);
+	  } else {
+	      System.out.println("Conta destino não localizada!");
+	  }
+        } else {
+	  System.out.println("Conta origem não localizada!");
+        }
         System.exit(0);
     }
 
