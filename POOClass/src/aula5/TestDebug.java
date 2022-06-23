@@ -8,22 +8,22 @@ public class TestDebug {
         String b = "123";
 
         if (Integer.parseInt(b) == a) {
-	  System.out.println("igual");
+            System.out.println("igual");
         } else {
-	  System.out.println("diferentes");
+            System.out.println("diferentes");
         }
 
         if (b.equals(String.valueOf(a))) {
-	  System.out.println("igual");
+            System.out.println("igual");
         } else {
-	  System.out.println("diferentes");
+            System.out.println("diferentes");
         }
 
         try {
-	  int vet[] = new int[2];
-	  vet[2] = 10;
+            int vet[] = new int[2];
+            vet[5] = 10;
         } catch (Exception ex) {
-	  System.out.println("ERRO: " + ex);
+            System.out.println("ERRO: " + ex);
         }
 
         System.exit(0);

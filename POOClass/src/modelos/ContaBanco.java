@@ -74,47 +74,41 @@ public class ContaBanco {
 
         StringBuilder retorno = new StringBuilder();
 
-        retorno.append("Titular: ").append(this.titular);
-        retorno.append("\nAgência: ").append(this.agencia);
-        retorno.append("\nNúmero da conta: ").append(this.conta);
-        retorno.append("\nSaldo: R$").append(this.saldo);
-        retorno.append("\nCheque especial: R$").append(this.chequeEspecial);
-        retorno.append("\nChave PIX: ").append(this.chavePix);
-        retorno.append("\n----------------------------");
+        retorno.append("  Conta: ").append(this.conta);
 
         return retorno.toString();
     }
 
     public boolean saque(double saque, boolean status) {
         if (saque > (this.saldo + this.chequeEspecial)) {
-	  if (status) {
-	      System.out.println("Erro, valor de saque superior ao saldo!\n");
-	  }
-	  return false;
+            if (status) {
+                System.out.println("Erro, valor de saque superior ao saldo!\n");
+            }
+            return false;
         } else {
-	  this.saldo -= saque;
-	  if (status) {
-	      System.out.println("Foi sacado: R$" + saque + "\n");
-	  }
-	  return true;
+            this.saldo -= saque;
+            if (status) {
+                System.out.println("Foi sacado: R$" + saque + "\n");
+            }
+            return true;
         }
     }
 
     public void deposito(double deposito, boolean status) {
         if (status) {
-	  System.out.println("Depositando: R$" + deposito + "\n");
-	  System.out.println("Foi depositado: R$" + deposito + "\n");
+            System.out.println("Depositando: R$" + deposito + "\n");
+            System.out.println("Foi depositado: R$" + deposito + "\n");
         }
         this.saldo += deposito;
     }
 
     public void transferir(double valorTrans, ContaBanco contaRecebe) {
         if (saque(valorTrans, false)) {
-	  contaRecebe.deposito(valorTrans, false);
-	  System.out.println("\nTranferido com sucesso: R$ " + valorTrans);
-	  System.out.println("--------------------------------------");
+            contaRecebe.deposito(valorTrans, false);
+            System.out.println("\nTranferido com sucesso: R$ " + valorTrans);
+            System.out.println("--------------------------------------");
         } else {
-	  System.out.println("Erro na transferencia\n");
+            System.out.println("Erro na transferencia\n");
         }
     }
 
