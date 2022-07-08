@@ -11,7 +11,7 @@ package modelos;
 public class test {
 
     public static void main(String[] args) {
-        int vet[] = new int[16];
+        int vet[] = new int[8];
 
         for (int i = 0; i < vet.length; i++) {
             for (int j = 0; j < vet.length; j++) {

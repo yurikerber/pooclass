@@ -1,5 +1,7 @@
 package modelos;
 
+import ferramentas.Globais;
+
 public class ContaBanco {
 
     private String agencia;
@@ -8,17 +10,27 @@ public class ContaBanco {
     private double saldo;
     private double chequeEspecial;
     private String chavePix;
+    private String senha;
 
     public ContaBanco() {
     }
 
-    public ContaBanco(String agencia, String conta, String titular, double saldo, double chequeEspecial, String chavePix) {
+    public ContaBanco(String agencia, String conta, String titular, double saldo, double chequeEspecial, String chavePix, String senha) {
         this.agencia = agencia;
         this.conta = conta;
         this.titular = titular;
         this.saldo = saldo;
         this.chequeEspecial = chequeEspecial;
         this.chavePix = chavePix;
+        this.senha = senha;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getChavePix() {
@@ -74,7 +86,7 @@ public class ContaBanco {
 
         StringBuilder retorno = new StringBuilder();
 
-        retorno.append("  Conta: ").append(this.conta);
+        retorno.append(this.titular);
 
         return retorno.toString();
     }
@@ -105,10 +117,10 @@ public class ContaBanco {
     public void transferir(double valorTrans, ContaBanco contaRecebe) {
         if (saque(valorTrans, false)) {
             contaRecebe.deposito(valorTrans, false);
-            System.out.println("\nTranferido com sucesso: R$ " + valorTrans);
-            System.out.println("--------------------------------------");
+            Globais.exibirMensagem("Sucesso!");
+
         } else {
-            System.out.println("Erro na transferencia\n");
+            Globais.exibirMensagem("Erro na transferencia\n");
         }
     }
 

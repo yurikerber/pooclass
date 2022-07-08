@@ -4,6 +4,10 @@
  */
 package jogo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +24,23 @@ public class JogoDaMemoria extends javax.swing.JFrame {
 
     public JogoDaMemoria() {
         initComponents();
+        int vet[] = new int[16];
+
+        List numeros = new ArrayList();
+        for (int i = 0; i < 8; i++) { //Sequencia da mega sena
+            numeros.add(i + 1);
+        }
+
+//Embaralhamos os números:
+        Collections.shuffle(numeros);
+
+//Mostramos 6 aleatórios
+        for (int i = 0; i < 8; i++) {
+            vet[i] = Integer.parseInt(String.valueOf(numeros.get(i)));
+            btn1.setText(String.valueOf(vet[i]));
+            System.out.println(vet[i]);
+        }
+
     }
 
     /**
